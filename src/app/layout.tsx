@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import AuthContext from "@/context/AuthContext";
 
 const pretendard = localFont({
   src: "../../public/fonts/PretendardVariable.woff2",
@@ -20,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${pretendard.className}`}>
       <body className="w-full max-w-screen-xl overflow-auto mx-auto">
-        <header className="sticky top-0 bg-white z-10 border-b">
-          <Navbar />
-        </header>
-        {children}
+        <AuthContext>
+          <header className="sticky top-0 bg-white z-10 border-b">
+            <Navbar />
+          </header>
+          <main>{children}</main>
+        </AuthContext>
       </body>
     </html>
   );
