@@ -18,9 +18,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${pretendard.className}`}>
-        <header>
+    <html lang="en" className={`${pretendard.className}`}>
+      <body className="w-full max-w-screen-xl overflow-auto mx-auto">
+        <header className="sticky top-0 bg-white z-10 border-b">
           <Navbar />
         </header>
         {children}
