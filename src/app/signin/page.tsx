@@ -3,15 +3,12 @@ import Signin from "@/components/Signin";
 import { redirect } from "next/navigation";
 
 type Props = {
-  searchParams: {
-    callbackUrl: string;
-  };
+  searchParams: Promise<{ callbackUrl?: string }>;
 };
 
-export default async function SignInPage({
-  searchParams: { callbackUrl },
-}: Props) {
+export default async function SignInPage({ searchParams }: Props) {
   const session = await auth();
+  const params = await searchParams;
 
   if (session) {
     redirect("/");
@@ -19,7 +16,7 @@ export default async function SignInPage({
 
   return (
     <section className="flex justify-center mt-[30%]">
-      <Signin callbackUrl={callbackUrl ?? "/"} />
+      <Signin callbackUrl={params.callbackUrl ?? "/"} />
     </section>
   );
 }
