@@ -2,7 +2,15 @@ import { auth } from "@/auth";
 import Signin from "@/components/Signin";
 import { redirect } from "next/navigation";
 
-export default async function SignInPage() {
+type Props = {
+  searchParams: {
+    callbackUrl: string;
+  };
+};
+
+export default async function SignInPage({
+  searchParams: { callbackUrl },
+}: Props) {
   const session = await auth();
 
   if (session) {
@@ -11,7 +19,7 @@ export default async function SignInPage() {
 
   return (
     <section className="flex justify-center mt-[30%]">
-      <Signin />
+      <Signin callbackUrl={callbackUrl ?? "/"} />
     </section>
   );
 }
