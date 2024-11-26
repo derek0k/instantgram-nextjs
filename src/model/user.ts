@@ -4,3 +4,11 @@ export type User = {
   email: string;
   image?: string;
 };
+
+export type SimpoleUser = Pick<User, "username" | "image">;
+
+export type DetailUser = User & {
+  following: SimpoleUser[];
+  followers: SimpoleUser[];
+  bookmarks: string[];
+};
