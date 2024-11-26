@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import AuthContext from "@/context/AuthContext";
+import SWRConfigContext from "@/context/SWRConfigContext";
 
 const pretendard = localFont({
   src: "../../public/fonts/PretendardVariable.woff2",
@@ -25,7 +26,9 @@ export default function RootLayout({
           <header className="sticky top-0 bg-white z-10 border-b">
             <Navbar />
           </header>
-          <main>{children}</main>
+          <main>
+            <SWRConfigContext>{children}</SWRConfigContext>
+          </main>
         </AuthContext>
       </body>
     </html>
