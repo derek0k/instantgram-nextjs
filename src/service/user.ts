@@ -11,7 +11,7 @@ type OAuthUser = {
 export async function addUser({ username, name, id, email, image }: OAuthUser) {
   return client.createIfNotExists({
     // id 값이 계속 변경되서 들어오므로 임시로 중복을 막기위해서 name으로 지정
-    _id: name,
+    _id: email.split("@")[0],
     _type: "user",
     username,
     email,
