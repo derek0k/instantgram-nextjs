@@ -15,7 +15,7 @@ export default async function SignInPage({ searchParams }: Props) {
   }
 
   return (
-    <section className="flex justify-center mt-[30%]">
+    <section className="flex justify-center mt-[15vh]">
       <Signin callbackUrl={params.callbackUrl ?? "/"} />
     </section>
   );
