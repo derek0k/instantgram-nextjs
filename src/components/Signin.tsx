@@ -10,7 +10,7 @@ type Props = {
 export default function Signin({ callbackUrl }: Props) {
   return (
     <ColorButton
-      text={`Sign In with Github`}
+      text={`Sign In with Google`}
       onClick={() => signIn("google", { callbackUrl })}
       size="big"
     />
