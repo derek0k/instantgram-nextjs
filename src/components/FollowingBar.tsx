@@ -8,7 +8,7 @@ import Avatar from "./Avatar";
 import ScrollableBar from "./ui/ScrollableBar";
 
 export default function FollowingBar() {
-  const { data, isLoading, error } = useSWR<DetailUser>("/api/me");
+  const { data, isLoading } = useSWR<DetailUser>("/api/me");
   // const users = data?.following;
   // const users = undefined;
   const users = data?.following && [

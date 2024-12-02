@@ -2,7 +2,7 @@ import { auth } from "@/auth";
 import { getUserByUsername } from "@/service/user";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET() {
   const session = await auth();
   const user = session?.user;
 
