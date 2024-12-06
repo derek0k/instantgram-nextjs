@@ -28,7 +28,7 @@ export default function RootLayout({
               <Navbar />
             </div>
           </header>
-          <main className="w-full flex justify-center bg-neutral-50">
+          <main className="w-full flex justify-center bg-neutral-50 max-w-screen-xl mx-auto">
             <SWRConfigContext>{children}</SWRConfigContext>
           </main>
         </AuthContext>

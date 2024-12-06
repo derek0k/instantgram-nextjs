@@ -15,9 +15,9 @@ export default async function UserPage({ params }: Props) {
     notFound();
   }
   return (
-    <>
+    <section className="w-full">
       <UserProfile user={user} />
       <UserPosts user={user} />
-    </>
+    </section>
   );
 }
