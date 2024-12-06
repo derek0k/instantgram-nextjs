@@ -8,5 +8,7 @@ export async function GET(request: NextRequest) {
     return new Response("Invalid Request", { status: 400 });
   }
 
-  return searchUsers(keyword).then((data) => NextResponse.json(data));
+  const decodedKeyword = decodeURIComponent(keyword);
+
+  return searchUsers(decodedKeyword).then((data) => NextResponse.json(data));
 }
