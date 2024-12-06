@@ -2,16 +2,35 @@
 
 import { ProfileUser } from "@/model/user";
 import { useState } from "react";
-import useSWR from "swr";
+import PostIcon from "./ui/icons/PostIcon";
+import HeartIcon from "./ui/icons/HeartIcon";
+import BookmarkIcon from "./ui/icons/BookmarIcon";
+import PostGrid from "./PostGrid";
 
 type Props = {
   user: ProfileUser;
 };
 
-export default function UserPosts({ user: { username } }: Props) {
-  const [tab, setTab] = useState("posts");
-  const { data: posts } = useSWR(`/api/users/${username}/${tab}`);
+const tabs = [
+  { type: "posts", icon: <PostIcon /> },
+  { type: "saved", icon: <BookmarkIcon className="w-3 h-3" /> },
+  { type: "liked", icon: <HeartIcon className="w-3 h-3" /> },
+];
 
-  console.log(posts);
-  return <div></div>;
+export default function UserPosts({ user: { username } }: Props) {
+  const [query, setQuery] = useState(tabs[0].type);
+
+  return (
+    <section>
+      <ul>
+        {tabs.map(({ type, icon }) => (
+          <li key={type} onClick={() => setQuery(type)}>
+            <button>{icon}</button>
+            <span>{type}</span>
+          </li>
+        ))}
+      </ul>
+      <PostGrid username={username} query={query} />
+    </section>
+  );
 }
