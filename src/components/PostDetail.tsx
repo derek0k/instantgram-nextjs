@@ -4,6 +4,7 @@ import PostUserAvatar from "./PostUserAvatar";
 import ActionBar from "./ActionBar";
 import Avatar from "./Avatar";
 import useFullPost from "@/hooks/post";
+import GridSpinner from "./ui/GridSpinner";
 
 type Props = {
   post: SimplePost;
@@ -11,7 +12,7 @@ type Props = {
 
 export default function PostDetail({ post }: Props) {
   const { id, userImage, username, likes, image } = post;
-  const { post: data, postComment } = useFullPost(id);
+  const { post: data, postComment, isLoading } = useFullPost(id);
   const comments = data?.comments;
 
   return (
@@ -28,7 +29,8 @@ export default function PostDetail({ post }: Props) {
       </div>
       <div className="w-full basis-2/5 flex flex-col">
         <PostUserAvatar image={userImage} username={username} />
-        <ul className="border-t border-gray-200 h-full overflow-y-auto p-4 mb-1">
+        <ul className="border-t border-gray-200 h-full overflow-y-auto p-4 mb-1 text-center">
+          {isLoading && <GridSpinner />}
           {comments &&
             comments.map(
               ({ image, username: commentUsername, comment }, index) => (
