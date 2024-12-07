@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     return new Response("Bad Request", { status: 400 });
   }
 
-  return addComment(id, user.id, comment) //
+  return addComment(id, user.username, comment) //
     .then((res) => NextResponse.json(res))
     .catch((error) => new Response(JSON.stringify(error), { status: 500 }));
 }
