@@ -18,7 +18,7 @@ export async function PUT(req: NextRequest) {
 
   const request = like ? likePost : disLikePost;
 
-  return request(id, user.id) //
+  return request(id, user.username) //
     .then((res) => NextResponse.json(res))
     .catch((error) => new Response(JSON.stringify(error), { status: 500 }));
 }
