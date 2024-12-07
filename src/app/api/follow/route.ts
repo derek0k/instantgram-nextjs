@@ -18,7 +18,7 @@ export async function PUT(req: NextRequest) {
 
   const request = isFollow ? follow : unfollow;
 
-  return request(user.id, targetId) //
+  return request(user.username, targetId) //
     .then((res) => NextResponse.json(res))
     .catch((error) => new Response(JSON.stringify(error), { status: 500 }));
 }
