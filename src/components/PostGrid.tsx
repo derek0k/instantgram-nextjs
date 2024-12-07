@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import GridSpinner from "./ui/GridSpinner";
-import { SimplePost } from "@/model/post";
 import PostGridCard from "./PostGridCard";
+import usePosts from "@/hooks/posts";
 
 type Props = {
   username: string;
@@ -9,9 +9,8 @@ type Props = {
 };
 
 export default function PostGrid({ username, query }: Props) {
-  const { data: posts, isLoading } = useSWR<SimplePost[]>(
-    `/api/users/${username}/${query}`
-  );
+  const cacheKey = `/api/users/${username}/${query}`;
+  const { posts, isLoading } = usePosts(cacheKey);
 
   return (
     <div className="w-full text-center">
@@ -20,7 +19,11 @@ export default function PostGrid({ username, query }: Props) {
         {posts &&
           posts.map((post, index) => (
             <li key={post.id}>
-              <PostGridCard post={post} priority={index < 6} />
+              <PostGridCard
+                post={post}
+                priority={index < 6}
+                cacheKey={cacheKey}
+              />
             </li>
           ))}
       </ul>
