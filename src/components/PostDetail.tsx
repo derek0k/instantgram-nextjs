@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function PostDetail({ post }: Props) {
-  const { id, userImage, username, likes, image } = post;
+  const { id, userImage, username, image } = post;
   const { post: data, postComment, isLoading } = useFullPost(id);
   const comments = data?.comments;
 

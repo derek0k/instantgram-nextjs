@@ -26,15 +26,21 @@ export default function ActionBar({ post, children, onComment }: Props) {
   const bookmarked = user?.bookmarks.includes(id) ?? false;
 
   const handleComment = (comment: string) => {
-    user && onComment({ comment, username: user.username, image: user.image });
+    if (user) {
+      onComment({ comment, username: user.username, image: user.image });
+    }
   };
 
   const handleLike = (like: boolean) => {
-    user && setLike(post, user.username, like);
+    if (user) {
+      setLike(post, user.username, like);
+    }
   };
 
   const handleBookmark = (bookmark: boolean) => {
-    user && setBookmark(id, bookmark);
+    if (user) {
+      setBookmark(id, bookmark);
+    }
   };
 
   return (
