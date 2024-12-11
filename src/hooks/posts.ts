@@ -17,7 +17,7 @@ async function addComment(id: string, comment: string) {
   }).then((res) => res.json());
 }
 
-export default function usePosts(cacheKey: string = "api/posts") {
+export default function usePosts() {
   const cacheKeys = useCacheKeys();
   const {
     data: posts,
